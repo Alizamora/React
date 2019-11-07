@@ -1,0 +1,20 @@
+.buttonFavorites{
+    background-color: blue;
+    color: white;
+    border-radius: 50px;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    margin: 50px 80px;
+    transition: 0.35s;
+    border: none;
+}
+
+.buttonFavorites:not([disabled="true"]):hover{
+    transform: scale(1.15);
+}
+
+.buttonFavorites[disabled="true"] {
+    background-color: gray;
+    color: white;
+}

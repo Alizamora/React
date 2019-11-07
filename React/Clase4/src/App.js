@@ -1,22 +1,16 @@
-import React, {useState} from 'react';
-import SearchBar from './components/searchBar';
-import request from './request/request';
-import CardsContainer from './components/cardsContainer';
-import Card from './components/card';
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import HomePage from './pages/home';
 
-export default () => {
-  const [cards, setCards] = useState([]);
-
-  function getValue(v) {
-      request(v).then(data => {
-          setCards(data.cards);
-      });
-  }
-
+const App = () => {
   return (
-      <div>
-          <SearchBar value={getValue}/>
-          <CardsContainer cards={cards}/>
-      </div>
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route path={'/'} page={HomePage} />
+        </Switch>
+      </BrowserRouter>
+    </div>
   )
 }
+export default App;

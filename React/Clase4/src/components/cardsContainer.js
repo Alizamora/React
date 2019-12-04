@@ -4,7 +4,7 @@ import Card from './card/card';
 export default (props)=> {
     return (
         <div>
-            {props.cards.map(card => <Card imageUrl={card.imageUrl} name={card.name} />)}
+            {props.cards.map(card => <Card {...card} />)}
         </div>
     )
 }

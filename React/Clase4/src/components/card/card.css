@@ -5,3 +5,7 @@
     background-color: transparent;
     border: none;
 }
+
+.buttonCard:hover{
+    transform: scale(1.1);
+}

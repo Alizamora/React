@@ -1,23 +1,29 @@
-import React, {useState} from 'react';
-import {BrowserRouter, Route, switch} from 'react-router-dom';
-import SearchBar from './components/searchBar';
-import request from './request/request';
-import CardsContainer from './components/cardsContainer';
-import Card from './components/card/card';
+import React, { useState, useEffect, useContext } from 'react';
+import Context from '../context';
+import SearchBar from '../components/searchBar';
+import request from '../request/request';
+import CardsContainer from '../components/cardsContainer';
 
-export default () => {
-  const [cards, setCards] = useState([]);
+export default (props) => {
+	const context = useContext(Context);
+	const [cards, setCards] = useState([]);
 
-  function getValue(v) {
-      request(v).then(data => {
-          setCards(data.cards);
-      });
-  }
+	function getValue(v) {
+		request(v).then(data => {
+			setCards(data.cards);
+			context.cards = data.cards;
+		});
+	}
 
-  return (
-      <div>
-          <SearchBar value={getValue}/>
-          <CardsContainer cards={cards}/>
-      </div>
-  )
+	useEffect(() => {
+		getValue();
+	}, []);
+
+	return (
+		<div>
+			<h1>Home Page</h1>
+			<SearchBar value={getValue} />
+			<CardsContainer cards={cards} />
+		</div>
+	)
 }
